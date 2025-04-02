@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulaire avec validation</title>
+</head>
+<body>
+
+<h1 th:if="${message != null}" th:text="${message}">Bienvenue !</h1>
+
+<form th:action="@{/view}" th:object="${userForm}" method="post">
+
+    <label for="pseudo">Pseudo :</label>
+    <input type="text" th:field="*{pseudo}" id="pseudo">
+    <p th:if="${#fields.hasErrors('pseudo')}" th:errors="*{pseudo}"></p>
+
+    <label for="age">Âge :</label>
+    <input type="number" th:field="*{age}" id="age">
+    <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+
+    <button type="submit">Valider</button>
+</form>
+
+<h2>Consoles disponibles :</h2>
+<ul>
+    <li th:each="console : ${consoles}" th:text="${console}">Console</li>
+</ul>
+
+</body>
+</html>
