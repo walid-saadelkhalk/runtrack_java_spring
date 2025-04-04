@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<!-- ✅ déclaration du fragment "header" -->
+<div th:fragment="header">
+    👋 Bonjour, <strong sec:authentication="name">invité</strong>
+
+    | <a th:href="@{/persons}">Liste</a>
+
+    <span sec:authorize="hasRole('ADMIN')">
+        | <a th:href="@{/form}">Ajouter</a>
+    </span>
+
+    | <a th:href="@{/export}">Exporter</a>
+    | <a th:href="@{/logout}">Déconnexion</a>
+</div>
+<hr>
+
+</body>
+</html>
